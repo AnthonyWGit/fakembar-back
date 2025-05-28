@@ -21,8 +21,7 @@ export default {
   serveBlagues: (req, res) => {
     serveStatic('allJokes.html')(req, res);
   },
-  
   serveIndex: (req, res) => {
     serveStatic('joke.html')(req, res);
-  }
+  },
 };

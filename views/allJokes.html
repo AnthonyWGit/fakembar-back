@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loading Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-  <button id="jokeBtn">Voir une blague</button>
-  <div id="jokeContainer"></div>
+    <div class="placeholder" id="placeholder">
+gggs
+    </div>
 </body>
-</html>
+    <script>
+        // Chargement initial des blagues
+        (async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/v1/jokes/all');
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP! Statut: ${response.status}`);
+                }
+                
+                const jokes = await response.json();
+                const container = document.getElementById('placeholder');
+                container.innerHTML = ""
+                // Ajouter toutes les blagues
+                jokes.forEach(joke => {
+                    container.innerHTML += ` ${joke.text} ${joke.answer} `; //${var} for string interpolation
+                });
+                console.log(jokes)
 
-<script>
-  document.getElementById('jokeBtn').addEventListener('click', async () => {
-    try 
-    {
-      const response = await fetch('http://localhost:3000/api/v1/jokes/random');
-      const joke = await response.json();
-      document.getElementById('jokeContainer').innerHTML = `
-        <p>${joke.text}</p>
-        <p><strong>${joke.answer}</strong></p>
-      `;
-    }
-    catch (error) 
-    {
-      console.error('Erreur:', error);
-    }
-  });
-</script>
+            } catch (error) {
+                console.error('Erreur:', error);
+                document.getElementById('placeholder').innerHTML = 
+                    '<p>Erreur lors du chargement des blagues</p>';
+            }
+        })();
+    </script>
+</html>
