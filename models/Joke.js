@@ -1,32 +1,29 @@
 import { DataTypes } from 'sequelize';
-//getters and setters don't need to be explicitely written with sequalize ORM
-export default (sequelize) => {
-  const Joke = sequelize.define('Joke', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    text: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
-    },
-    answer: {
-      type: DataTypes.STRING,
-      allowNull: false
+import sequelize from '../config/database.js'; // Import the shared instance
+
+const Joke = sequelize.define('Joke', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  text: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
     }
-  }, {
-    timestamps: true,
-    tableName: 'jokes'
-  });
+  },
+  answer: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
+}, {
+  timestamps: true,
+  tableName: 'jokes'
+});
 
-  Joke.associate = function(models) {
-    // associations can be defined here
-    // Example: Joke.belongsTo(models.User, { foreignKey: 'userId' });
-  };
+// Associations would be defined here if you had relationships
+// Joke.associate = function(models) { ... };
 
-  return Joke;
-};
+export default Joke;

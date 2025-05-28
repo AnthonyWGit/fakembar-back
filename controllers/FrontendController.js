@@ -1,14 +1,13 @@
-import db from '../models/Index.js';
-const { Joke } = db;
+import JokeModel from '../models/Joke.js';
 
 export default {
   home: async (req, res) => {
-    return res.render('home',{});
+    return res.render('home', {});
   },
 
   showJokeSelection: async (req, res) => {
     try {
-      const jokes = await Joke.findAll();
+      const jokes = await JokeModel.findAll();
       
       if (req.query.jokeId) {
         return res.redirect(`/jokeUnique/${req.query.jokeId}`);
@@ -27,7 +26,7 @@ export default {
 
   showSelectedJoke: async (req, res) => {
     try {
-      const jokes = await Joke.findAll();
+      const jokes = await JokeModel.findAll();
       const selectedJokeId = req.params.jokeId;
       let selectedAnswer = '';
       

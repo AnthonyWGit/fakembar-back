@@ -1,9 +1,10 @@
 import 'dotenv/config';
 import express from 'express';
+import sequelize from './config/database.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import frontendRoutes from './routes/FrontendRoutes.js';
-
+const expressMod = express();
 // Get current directory path
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -40,3 +41,11 @@ frontendApp.use((req, res) => {
 frontendApp.listen(process.env.FRONTEND_PORT, () => {
   console.log(`Frontend server running securely on port ${process.env.FRONTEND_PORT}`);
 });
+
+// sequelize.sync()
+//   .then(() => {
+//     express().listen(process.env.API_PORT, () => {
+//       console.log(`Frontend Server running on port ${process.env.FRONTEND_PORT}`);
+//     });
+//   })
+//   .catch(console.error);
