@@ -16,7 +16,10 @@ apiApp.use(express.json());
 apiApp.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 apiApp.use(cors({
-  origin: process.env.FRONTEND_URL
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Default fallback
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  credentials: true
 }));
 
 apiApp.use('/api/v1/jokes', jokeRoutes);

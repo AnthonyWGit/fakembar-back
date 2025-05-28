@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 function serveStatic(fileName) {
   return (req, res) => {
-    const filePath = path.join(__dirname, '../views', fileName);
+    const filePath = path.join(__dirname, '../views/templates', fileName);
     if (fs.existsSync(filePath)) {
       res.sendFile(filePath);
     } else {

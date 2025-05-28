@@ -4,7 +4,6 @@ import sequelize from './config/database.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import frontendRoutes from './routes/FrontendRoutes.js';
-const expressMod = express();
 // Get current directory path
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,9 +13,12 @@ const frontendApp = express();
 // Security headers
 frontendApp.disable('x-powered-by');
 
-// Configure views
+// Configure views to search in multiple directories
 frontendApp.set('view engine', 'pug');
-frontendApp.set('views', path.join(__dirname, 'views'));
+frontendApp.set('views', [
+  path.join(__dirname, 'views'),               // First look in base views directory
+  path.join(__dirname, 'views/templates')      // Then look in templates directory
+]);
 
 // Block direct access to Pug source files
 frontendApp.use((req, res, next) => {
