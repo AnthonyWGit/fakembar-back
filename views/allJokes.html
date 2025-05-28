@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading Page</title>
+</head>
+<body>
+  <button id="jokeBtn">Voir une blague</button>
+  <div id="jokeContainer"></div>
+</body>
+</html>
+
+<script>
+  document.getElementById('jokeBtn').addEventListener('click', async () => {
+    try 
+    {
+      const response = await fetch('http://localhost:3000/api/v1/jokes/random');
+      const joke = await response.json();
+      document.getElementById('jokeContainer').innerHTML = `
+        <p>${joke.text}</p>
+        <p><strong>${joke.answer}</strong></p>
+      `;
+    }
+    catch (error) 
+    {
+      console.error('Erreur:', error);
+    }
+  });
+</script>

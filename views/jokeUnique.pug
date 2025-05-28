@@ -1,0 +1,43 @@
+//- views/blagueUnique.pug
+extends layout
+
+block title
+  title Carambar & Co. - Sélection de Blagues
+
+block content
+  .joke-selector
+    noscript
+      .noscript-warning
+        | JavaScript est désactivé. Veuillez cliquer sur "Afficher la réponse" pour voir la réponse.
+
+    form(method="GET" action="/jokeUnique")
+      label(for="selectJoke") Choisissez une blague:
+      select#selectJoke(name="jokeId")
+        option(value="") --Sélectionnez une option--
+        each joke in jokes
+          option(
+            value=joke.id
+            selected=(selectedJokeId == joke.id)
+          )= joke.text
+      button(type="submit") Afficher la réponse
+    
+    if selectedAnswer
+      .joke-answer= selectedAnswer
+    else
+      .joke-answer
+
+block scripts
+  script.
+    document.addEventListener('DOMContentLoaded', function() {
+      const select = document.getElementById('selectJoke');
+      
+      // Handle dropdown change for JS users
+      select.addEventListener('change', function() {
+        const jokeId = this.value;
+        if (jokeId) {
+          window.location.href = `/jokeUnique/${jokeId}`;
+        } else {
+          window.location.href = '/jokeUnique';
+        }
+      });
+    });

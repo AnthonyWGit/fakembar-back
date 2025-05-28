@@ -1,0 +1,23 @@
+//- views/layout.pug
+doctype html
+html(lang="fr")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    block title
+      title Carambar & Co.
+    link(rel="stylesheet", href="/public/css/global.css")
+    block styles
+    block scripts
+  body
+    header.header
+      img.logo(src="/assets/images/carambar-logo.png", alt="Carambar Logo")
+      h1 Carambar & Co.
+    
+    main.container
+      block content
+    
+    footer.footer
+      p © #{new Date().getFullYear()} Carambar & Co. - Tous droits réservés
+    
+    block noscript
