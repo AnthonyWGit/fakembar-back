@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/database.js'; // Import the shared instance
+import sequelize from '../../config/database.js'; // Import the shared instance
 
 const Joke = sequelize.define('Joke', {
   id: {

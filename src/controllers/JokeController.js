@@ -1,5 +1,5 @@
 import Joke from '../models/Joke.js';
-import sequelize from '../config/database.js';
+import sequelize from '../../config/database.js';
 
 export default {
   /**
