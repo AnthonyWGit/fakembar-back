@@ -6,18 +6,31 @@ html(lang="fr")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     block title
       title Carambar & Co.
-    link(rel="stylesheet", href="/public/css/global.css")
+    block css
+      link(rel="stylesheet", href="/public/css/global.css")
     block styles
     block scripts
-  body
-    header.header
-      img.logo(src="/assets/images/carambar-logo.png", alt="Carambar Logo")
-      h1 Carambar & Co.
-    
-    main.container
+  body#wideBody
+    header.header.yellowBg
+    div.logo
+      a(href="/")
+        img.logo(src="/assets/images/carambar-logo.png", alt="Carambar Logo")
+        h1 Carambar & Co.
+    navbar.navbar
+      label#burger-menu(for="toggle") ☰
+      input(type="checkbox")#toggle
+      ul 
+        li.navbarItem 
+          a(href='/jokes') Toutes les blagues
+        li.navbarItem Aléatoire
+        li.navbarItem 
+          a(href="jokeUnique") Sélection
+
+    main.wrapper
       block content
     
     footer.footer
-      p © #{new Date().getFullYear()} Carambar & Co. - Tous droits réservés
+      div.footerDiv.yellowBg
+        p © #{new Date().getFullYear()} Carambar & Co. - Tous droits réservés
     
     block noscript

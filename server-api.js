@@ -6,6 +6,7 @@ import sequelize from './config/database.js';
 import jokeRoutes from './routes/jokeRoutes.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from './config/swagger.js'; // Add this
+import os from 'os';
 
 const apiApp = express();
 
@@ -16,7 +17,7 @@ apiApp.use(express.json());
 apiApp.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 apiApp.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Default fallback
+  origin: [process.env.FRONTEND_URL || 'http://localhost:3000', 'http://192.168.1.14:8080'], // Default fallback
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
   credentials: true
@@ -26,7 +27,7 @@ apiApp.use('/api/v1/jokes', jokeRoutes);
 
 sequelize.sync()
   .then(() => {
-    apiApp.listen(process.env.API_PORT, () => {
+    apiApp.listen(process.env.API_PORT, '0.0.0.0',() => {
       console.log(`API Server running on port ${process.env.API_PORT}`);
       console.log(`Swagger UI: http://localhost:${process.env.API_PORT}/api-docs`);
     });

@@ -12,9 +12,12 @@ gggs
 </body>
     <script>
         // Chargement initial des blagues
+          const apiHost = window.location.hostname === 'localhost' 
+            ? 'http://localhost:3000'
+            : 'http://192.168.1.14:3000'; // Your PC's IP
         (async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/v1/jokes/all');
+                  const response = await fetch(`${apiHost}/api/v1/jokes/all`);
                 if (!response.ok) {
                     throw new Error(`Erreur HTTP! Statut: ${response.status}`);
                 }

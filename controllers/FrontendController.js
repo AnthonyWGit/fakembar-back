@@ -5,6 +5,11 @@ export default {
     return res.render('home', {});
   },
 
+  // Redirect root to /home
+  redirectToHome : async(req,res) => {
+    return res.redirect('/home');
+  },
+  
   showJokeSelection: async (req, res) => {
     try {
       const jokes = await JokeModel.findAll();

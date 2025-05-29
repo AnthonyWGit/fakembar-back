@@ -4,6 +4,8 @@ import sequelize from './config/database.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import frontendRoutes from './routes/FrontendRoutes.js';
+import os from 'os';
+
 // Get current directory path
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -40,8 +42,21 @@ frontendApp.use((req, res) => {
   res.status(404).render('error', { message: 'Page not found' });
 });
 
-frontendApp.listen(process.env.FRONTEND_PORT, () => {
-  console.log(`Frontend server running securely on port ${process.env.FRONTEND_PORT}`);
+// 👇 Add this helper function
+function getNetworkIP() {
+  const interfaces = os.networkInterfaces();
+  for (const name of Object.keys(interfaces)) {
+    for (const iface of interfaces[name]) {
+      if (iface.family === 'IPv4' && !iface.internal) {
+        return iface.address;
+      }
+    }
+  }
+  return 'localhost';
+}
+
+frontendApp.listen(process.env.FRONTEND_PORT, '0.0.0.0', () => {
+  console.log(`Frontend server accessible at http://${getNetworkIP()}:${process.env.FRONTEND_PORT}`);
 });
 
 // sequelize.sync()

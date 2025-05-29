@@ -5,11 +5,13 @@ import staticController from '../controllers/StaticController.js';
 
 // Static HTML Routes
 router.get('/jokes', staticController.serveBlagues);
-router.get('/', staticController.serveIndex);
 
 // Dynamic Routes
 router.get('/jokeUnique', frontendController.showJokeSelection);
 router.get('/jokeUnique/:jokeId', frontendController.showSelectedJoke);
 router.get('/home', frontendController.home);
+
+// Redirect
+router.get('/', frontendController.redirectToHome);
 
 export default router;
