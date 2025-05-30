@@ -14,7 +14,7 @@ gggs
         // Chargement initial des blagues
           const apiHost = window.location.hostname === 'localhost' 
             ? 'http://localhost:3000'
-            : 'http://192.168.1.14:3000'; // Your PC's IP
+            : '${MyIP}:3000'; // Your PC's IP
         (async () => {
             try {
                   const response = await fetch(`${apiHost}/api/v1/jokes/all`);

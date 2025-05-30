@@ -1,15 +1,24 @@
-import 'dotenv/config'; // Load environment variables first
+import 'dotenv/config';
 import { Sequelize } from 'sequelize';
 
+// Create Sequelize instance without immediate connection
 const sequelize = new Sequelize({
   dialect: process.env.DB_DIALECT || 'sqlite',
   storage: process.env.DB_STORAGE_PATH || './database.sqlite',
-  logging: process.env.DB_LOGGING === 'true' ? console.log : false
+  logging: process.env.DB_LOGGING === 'true' ? console.log : false,
 });
 
-// Test connection
-sequelize.authenticate()
-  .then(() => console.log('Connexion à SQLite réussie !'))
-  .catch(err => console.error('Erreur de connexion :', err));
+// Test connection only when explicitly called
+// https://sequelize.org/docs/v6/getting-started/
+export const testConnection = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Database connection established successfully.');
+    return true;
+  } catch (error) {
+    console.error('Database connection failed:', error);
+    return false;
+  }
+};
 
 export default sequelize;

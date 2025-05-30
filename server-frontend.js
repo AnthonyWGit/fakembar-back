@@ -2,8 +2,8 @@ import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import frontendRoutes from './src/routes/FrontendRoutes.js'; // MUST ADD THIS
 
-// Get current directory path
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -14,7 +14,10 @@ frontendApp.disable('x-powered-by');
 
 // Configure views
 frontendApp.set('view engine', 'pug');
-frontendApp.set('views', path.join(__dirname, 'views'));
+frontendApp.set('views', [
+    path.join(__dirname, 'views'),          // First looks in root views
+    path.join(__dirname, 'views/templates') // Then looks in templates
+]);
 
 // Block direct access to Pug source files
 frontendApp.use((req, res, next) => {
@@ -27,15 +30,8 @@ frontendApp.use((req, res, next) => {
 // Serve static assets
 frontendApp.use('/public', express.static(path.join(__dirname, 'public')));
 
-// Render routes
-frontendApp.get('/', (req, res) => res.render('templates/home'));
-frontendApp.get('/jokes', (req, res) => res.render('templates/allJokes'));
-frontendApp.get('/random', (req, res) => res.render('templates/jokeUnique'));
-
-// Catch-all for 404
-frontendApp.use((req, res) => {
-  res.status(404).render('templates/error', { message: 'Page not found' });
-});
+// MOUNT ROUTES FIRST (CRITICAL FIX)
+frontendApp.use(frontendRoutes);
 
 // Start server
 const PORT = process.env.FRONTEND_PORT || 8080;

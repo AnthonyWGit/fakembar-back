@@ -25,7 +25,7 @@ const options = {
         description: 'Local development server'
       },
       {
-        url: 'https://your-production-url.com/api/v1',
+        url: 'https://cda-entree.onrender.com/api/v1',
         description: 'Production server'
       }
     ],
@@ -61,8 +61,8 @@ const options = {
   },
   // Paths to files containing OpenAPI definitions
   apis: [
-    path.join(__dirname, '../routes/*.js'),
-    path.join(__dirname, '../controllers/*.js')
+    path.join(__dirname, '../src/routes/*.js'),
+    path.join(__dirname, '../src/controllers/*.js')
   ],
 };
 

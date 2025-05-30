@@ -5,6 +5,7 @@ import staticController from '../controllers/StaticController.js';
 
 // Static HTML Routes
 router.get('/jokes', staticController.serveBlagues);
+router.get('/random', (req, res) => res.render('templates/jokeUnique'));
 
 // Dynamic Routes
 router.get('/jokeUnique', frontendController.showJokeSelection);
@@ -13,5 +14,10 @@ router.get('/home', frontendController.home);
 
 // Redirect
 router.get('/', frontendController.redirectToHome);
+
+// Catch-all for 404
+router.use((req, res) => {
+  res.status(404).render('error', { message: 'Page not found' });
+});
 
 export default router;
