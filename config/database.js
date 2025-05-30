@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { Sequelize } from 'sequelize';
-
+import fs from 'fs';
+import path from 'path';
 
 // Get the directory for the database file
 const storageDir = path.dirname(process.env.DB_STORAGE_PATH || './database.sqlite');
