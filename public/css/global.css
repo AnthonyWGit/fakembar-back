@@ -57,9 +57,12 @@ a
     border-top: var(--thickBlackBorder);
 }
 
-.navbar ul
+.navbar
 {
     background-color: white;
+}
+.navbar ul
+{
     display: flex;
     width: 100%;
     min-height: 5vh;;
@@ -145,5 +148,9 @@ a
         display: flex;
         z-index: 999;
         height: 80vh;
+    }
+    .navbar
+    {
+        border-bottom: var(--thickBlackBorder);
     }
 }

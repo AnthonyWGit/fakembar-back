@@ -10,6 +10,19 @@ export default {
     return res.redirect('/home');
   },
   
+  allJokesPage: async (req,res) => {
+    try
+    {
+      const jokes = await JokeModel.findAll();
+      res.render('jokes',{
+        jokes
+      });
+    }catch (error) {
+      console.error('Error fetching jokes:', error);
+      res.status(500).render('error', { message: 'Server Error' });
+    }
+  },
+
   showJokeSelection: async (req, res) => {
     try {
       const jokes = await JokeModel.findAll();
