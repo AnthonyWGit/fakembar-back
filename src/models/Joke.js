@@ -1,7 +1,7 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../../config/database.js'; // Import the shared instance
+import { DataTypes, Model } from 'sequelize';
+import sequelize from '../../config/database.js'; 
 
-const Joke = sequelize.define('joke', {
+const Joke = sequelize.define('Joke', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -23,7 +23,23 @@ const Joke = sequelize.define('joke', {
   tableName: 'Jokes'
 });
 
-// Associations would be defined here if you had relationships
-// Joke.associate = function(models) { ... };
+// Add custom methods to the model
+Joke.getRandom = async function() {
+  return this.findOne({
+    order: sequelize.literal('RANDOM()')
+  });
+};
+
+Joke.getAll = async function() {
+  return this.findAll();
+};
+
+Joke.getById = async function(id) {
+  return this.findByPk(id);
+};
+
+Joke.createJoke = async function({ text, answer }) {
+  return this.create({ text, answer });
+};
 
 export default Joke;
