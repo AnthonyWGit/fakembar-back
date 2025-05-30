@@ -25,7 +25,7 @@ const options = {
         description: 'Local development server'
       },
       {
-        url: 'https://cda-entree.onrender.com/api/v1',
+        url: 'https://fakembar.com/api/v1',
         description: 'Production server'
       }
     ],
