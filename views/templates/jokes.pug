@@ -1,39 +1,13 @@
 extends ../layouts/layout
 
-append css 
-    link(rel="stylesheet", href="/public/css/home.css")
 block title
     title Toutes les blagues
 
 block content
-    div#placeholder.placeholder
-        | Loading...
-    each joke in jokes
-        p=joke.text
-        p=joke.answer
-
-//- script
-//-   | // Chargement initial des blagues
-//-     const apiHost = 'https://fakembar.onrender.com';
-//-     (async () => {
-//-         try {
-//-             const response = await fetch(`${apiHost}/api/v1/jokes/all`);
-//-             if (!response.ok) {
-//-                 throw new Error(`Erreur HTTP! Statut: ${response.status}`);
-//-             }
-
-//-             const jokes = await response.json();
-//-             const container = document.getElementById('placeholder');
-//-             container.innerHTML = ""
-//-             // Ajouter toutes les blagues
-//-             jokes.forEach(joke => {
-//-                 container.innerHTML += ` ${joke.text} ${joke.answer} `; //${var} for string interpolation
-//-             });
-//-             console.log(jokes)
-
-//-         } catch (error) {
-//-             console.error('Erreur:', error);
-//-             document.getElementById('placeholder').innerHTML =
-//-                 '<p>Erreur lors du chargement des blagues</p>';
-//-         }
-//-     })();
+    main.wrapper.jokeAll
+        each joke in jokes
+            div.pair
+                div.question
+                    p=joke.text
+                div.answer
+                    p=joke.answer

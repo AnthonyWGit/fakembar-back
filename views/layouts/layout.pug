@@ -22,12 +22,12 @@ html(lang="fr")
         ul 
           li.navbarItem 
             a(href='/jokes') Toutes les blagues
-          li.navbarItem Aléatoire
+          li.navbarItem 
+            a(href='/jokeRandom') Aléatoire
           li.navbarItem 
             a(href="jokeUnique") Sélection
 
-    main.wrapper
-      block content
+    block content
     
     footer.footer
       div.footerDiv.yellowBg

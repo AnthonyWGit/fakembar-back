@@ -1,43 +1,73 @@
-//- views/blagueUnique.pug
 extends ../layouts/layout
 
 block title
-  title Carambar & Co. - Sélection de Blagues
+    title Toutes les blagues
 
 block content
-  .joke-selector
-    noscript
-      .noscript-warning
-        | JavaScript est désactivé. Veuillez cliquer sur "Afficher la réponse" pour voir la réponse.
-
-    form(method="GET" action="/jokeUnique")
-      label(for="selectJoke") Choisissez une blague:
-      select#selectJoke(name="jokeId")
-        option(value="") --Sélectionnez une option--
-        each joke in jokes
-          option(
-            value=joke.id
-            selected=(selectedJokeId == joke.id)
-          )= joke.text
-      button(type="submit") Afficher la réponse
-    
-    if selectedAnswer
-      .joke-answer= selectedAnswer
-    else
-      .joke-answer
+    main.wrapper
+        .slideshow-container
+            each joke, index in jokes
+                .mySlides.fade
+                    .joke-content
+                        p.joke-question= joke.text
+                        p.joke-answer= joke.answer
+            a.prev(data-direction="-1") ❮
+            a.next(data-direction="1") ❯
+            .dot-container
+                each _, index in jokes
+                    span.dot(data-index=index + 1)
 
 block scripts
-  script.
-    document.addEventListener('DOMContentLoaded', function() {
-      const select = document.getElementById('selectJoke');
-      
-      // Handle dropdown change for JS users
-      select.addEventListener('change', function() {
-        const jokeId = this.value;
-        if (jokeId) {
-          window.location.href = `/jokeUnique/${jokeId}`;
-        } else {
-          window.location.href = '/jokeUnique';
-        }
-      });
-    });
+    script(defer).
+        document.addEventListener('DOMContentLoaded', function() {
+            const slideshowContainer = document.querySelector('.slideshow-container');
+            if (!slideshowContainer) return;
+            
+            slideshowContainer.classList.add('initialized');
+            
+            let slideIndex = 1;
+            const slides = document.getElementsByClassName("mySlides");
+            const dots = document.getElementsByClassName("dot");
+            
+            // Add event listeners
+            document.querySelector('.prev').addEventListener('click', () => plusSlides(-1));
+            document.querySelector('.next').addEventListener('click', () => plusSlides(1));
+            
+            // Add dot event listeners
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].addEventListener('click', () => currentSlide(i + 1));
+            }
+            
+            // Initialize
+            showSlides(slideIndex);
+            
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+            
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+            
+            function showSlides(n) {
+                if (slides.length === 0) return;
+                
+                if (n > slides.length) slideIndex = 1;
+                if (n < 1) slideIndex = slides.length;
+                
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                
+                if (slides[slideIndex-1]) {
+                    slides[slideIndex-1].style.display = "block";
+                    if (dots[slideIndex-1]) {
+                        dots[slideIndex-1].className += " active";
+                    }
+                }
+            }
+        });
