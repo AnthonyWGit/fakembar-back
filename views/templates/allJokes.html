@@ -13,8 +13,8 @@ gggs
     <script>
         // Chargement initial des blagues
           const apiHost = window.location.hostname === 'localhost' 
-            ? 'http://localhost:3000'
-            : '${MyIP}:3000'; // Your PC's IP
+            ? 'http://localhost:10000'
+            : '${MyIP}:10000'; // Your PC's IP
         (async () => {
             try {
                   const response = await fetch(`${apiHost}/api/v1/jokes/all`);

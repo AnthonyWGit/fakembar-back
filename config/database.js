@@ -1,6 +1,15 @@
 import 'dotenv/config';
 import { Sequelize } from 'sequelize';
 
+
+// Get the directory for the database file
+const storageDir = path.dirname(process.env.DB_STORAGE_PATH || './database.sqlite');
+
+// Create the directory if it doesn't exist
+if (!fs.existsSync(storageDir)) {
+  fs.mkdirSync(storageDir, { recursive: true });
+}
+
 // Create Sequelize instance without immediate connection
 const sequelize = new Sequelize({
   dialect: process.env.DB_DIALECT || 'sqlite',

@@ -7,7 +7,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from './config/swagger.js';
 
 const apiApp = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 
 // Middleware
 apiApp.use(express.json());
@@ -39,7 +39,7 @@ const startServer = async () => {
     if (!isConnected) throw new Error('Database connection failed');
     
     // Sync models
-    await sequelize.sync({ alter: process.env.NODE_ENV === 'development' });
+    await sequelize.sync({ alter: process.env.NODE_ENV === 'development'});
     console.log('Database models synchronized');
     
     // Start server
