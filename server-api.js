@@ -27,9 +27,9 @@ apiApp.use('/api/v1/jokes', jokeRoutes);
 apiApp.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Health check endpoint
-apiApp.get('/health', (req, res) => {
-  res.status(200).json({ status: 'UP' });
-});
+// apiApp.get('/health', (req, res) => {
+//   res.status(200).json({ status: 'UP' });
+// });
 
 // Start server only after DB connection
 const startServer = async () => {
