@@ -12,25 +12,25 @@ html(lang="fr")
     block scripts
   body#wideBody
     header.header.yellowBg
-    div.logo
-      a(href="/")
-        img.logo(src="/assets/images/carambar-logo.png", alt="Carambar Logo")
-        h1 Carambar & Co.
-    navbar.navbar
-      label#burger-menu(for="toggle") ☰
-      input(type="checkbox")#toggle
-      ul 
-        li.navbarItem 
-          a(href='/jokes') Toutes les blagues
-        li.navbarItem Aléatoire
-        li.navbarItem 
-          a(href="jokeUnique") Sélection
+      div.logo
+        a(href="/")
+          img.logo(src="/assets/images/carambar-logo.png", alt="Carambar Logo")
+          h1 Carambar & Co.
+      navbar.navbar
+        label#burger-menu(for="toggle") ☰
+        input(type="checkbox")#toggle
+        ul 
+          li.navbarItem 
+            a(href='/jokes') Toutes les blagues
+          li.navbarItem Aléatoire
+          li.navbarItem 
+            a(href="jokeUnique") Sélection
 
     main.wrapper
       block content
     
     footer.footer
       div.footerDiv.yellowBg
-        p © #{new Date().getFullYear()} Carambar & Co. - Tous droits réservés
+        p © #{new Date().getFullYear()} Fakembar & Co. - Tous droits réservés
     
     block noscript
