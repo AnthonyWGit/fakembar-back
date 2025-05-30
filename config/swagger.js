@@ -15,8 +15,8 @@ const options = {
       description: 'API for managing Carambar jokes',
       contact: {
         name: 'Carambar API Support',
-        url: 'https://carambar.com/support',
-        email: 'api-support@carambar.com'
+        url: 'https://fakembar.com/support',
+        email: 'api-support@fakembar.com'
       }
     },
     servers: [
@@ -25,7 +25,7 @@ const options = {
         description: 'Local development server'
       },
       {
-        url: 'https://fakembar.com/api/v1',
+        url: 'https://fakembar.onrender.com/api/v1',
         description: 'Production server'
       }
     ],
