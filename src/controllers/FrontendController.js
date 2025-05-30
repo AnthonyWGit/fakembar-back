@@ -1,31 +1,37 @@
-import JokeModel from '../models/Joke.js';
+import Joke from '../models/Joke.js';
 
 export default {
   home: async (req, res) => {
     return res.render('home', {});
   },
 
-  // Redirect root to /home
-  redirectToHome : async(req,res) => {
+  redirectToHome: async (req, res) => {
     return res.redirect('/home');
   },
   
-  allJokesPage: async (req,res) => {
-    try
-    {
-      const jokes = await JokeModel.findAll();
-      res.render('jokes',{
-        jokes
-      });
-    }catch (error) {
+  allJokesPage: async (req, res) => {
+    try {
+      const jokes = await Joke.getAll();
+      res.render('jokes', { jokes });
+    } catch (error) {
       console.error('Error fetching jokes:', error);
       res.status(500).render('error', { message: 'Server Error' });
     }
   },
 
-  showJokeSelection: async (req, res) => {
+  showRandomPage: async (req, res) => {
     try {
-      const jokes = await JokeModel.findAll();
+      const randomJoke = await Joke.getRandom();
+      res.render('jokeRandom', { joke: randomJoke });
+    } catch (error) {
+      console.error('Error fetching random joke:', error);
+      res.status(500).render('error', { message: 'Server Error' });
+    }
+  },
+
+  showJokeSelectionPage: async (req, res) => {
+    try {
+      const jokes = await Joke.getAll();
       
       if (req.query.jokeId) {
         return res.redirect(`/jokeUnique/${req.query.jokeId}`);
@@ -42,9 +48,9 @@ export default {
     }
   },
 
-  showSelectedJoke: async (req, res) => {
+  showSelectedJokePage: async (req, res) => {
     try {
-      const jokes = await JokeModel.findAll();
+      const jokes = await Joke.getAll();
       const selectedJokeId = req.params.jokeId;
       let selectedAnswer = '';
       

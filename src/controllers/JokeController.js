@@ -1,5 +1,4 @@
 import Joke from '../models/Joke.js';
-import sequelize from '../../config/database.js';
 
 export default {
   /**
@@ -9,15 +8,15 @@ export default {
    *   description: Joke management endpoints
    */
   
-  // ... existing methods with enhanced comments ...
-
+  
   /**
    * Get all jokes
    * @async
    */
+
   getAllJokes: async (req, res) => {
     try {
-      const jokes = await Joke.findAll();
+      const jokes = await Joke.getAll();
       res.status(200).json(jokes);
     } catch (error) {
       res.status(500).json({ error: 'Erreur lors de la récupération des blagues' });
@@ -25,12 +24,13 @@ export default {
   },
 
   /**
-   * Get a random joke
+   * Get a specific joke ID
    * @async
    */
+
   getJokeById: async (req, res) => {
     try {
-      const joke = await Joke.findByPk(req.params.id);
+      const joke = await Joke.getById(req.params.id);
       if (!joke) {
         return res.status(404).json({ error: 'Blague non trouvée' });
       }
@@ -40,10 +40,12 @@ export default {
     }
   },
 
+  
   /**
    * Add a joke
    * @async
    */
+
   addJoke: async (req, res) => {
     try {
       const { text, answer } = req.body;
@@ -52,34 +54,33 @@ export default {
         return res.status(400).json({ error: 'Text et answer sont requis' });
       }
 
-      const newJoke = await Joke.create({
-        text,
-        answer
-      });
-
+      const newJoke = await Joke.createJoke({ text, answer });
       res.status(201).json(newJoke);
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
   },
 
+  
+  /**
+   * Get a random joke
+   * @async
+   */
+
   getRandomJoke: async (req, res) => {
     try {
-      const randomJoke = await Joke.findOne({
-        order: sequelize.literal('RANDOM()')
-      });
+      const randomJoke = await Joke.getRandom();
 
       if (!randomJoke) {
         return res.status(404).json({ error: "Aucune blague trouvée" });
       }
 
       res.json(randomJoke);
-
     } catch (error) {
-      console.error('ERREUR SQL:', error.parent?.sql);
+      console.error('ERREUR:', error);
       res.status(500).json({ 
-        error: error.message,
-        sqlError: error.parent?.sql 
+        error: 'Erreur serveur',
+        details: error.message
       });
     }
   }
