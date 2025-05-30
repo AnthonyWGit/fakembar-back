@@ -4,10 +4,11 @@ import frontendController from '../controllers/FrontendController.js';
 import staticController from '../controllers/StaticController.js';
 
 // Static HTML Routes
-router.get('/jokes', staticController.serveBlagues);
+
 router.get('/random', (req, res) => res.render('templates/jokeUnique'));
 
 // Dynamic Routes
+router.get('/jokes',frontendController.allJokesPage);
 router.get('/jokeUnique', frontendController.showJokeSelection);
 router.get('/jokeUnique/:jokeId', frontendController.showSelectedJoke);
 router.get('/home', frontendController.home);
