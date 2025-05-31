@@ -83,6 +83,27 @@ router.post('/add', controller.addJoke);
 
 /**
  * @swagger
+ * /jokes/countall:
+ *   get:
+ *     summary: Count all the jokes
+ *     description: retrieve an integer representing the number of entries in the table joke 
+ *     tags: [Jokes]
+ *     responses:
+ *       200:
+ *         description: Integer representing the number of jokes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: integer
+ *               items:
+ *                 $ref: '#/components/schemas/Joke'
+ *       500:
+ *         description: Server error
+ */
+router.get('/countall', controller.count);
+
+/**
+ * @swagger
  * /jokes/{id}:
  *   get:
  *     summary: Get a joke by ID
@@ -108,26 +129,5 @@ router.post('/add', controller.addJoke);
  *         description: Server error
  */
 router.get('/:id', controller.getJokeById);
-
-/**
- * @swagger
- * /jokes/countall:
- *   get:
- *     summary: Count all the jokes
- *     description: retrieve an integer representing the number of entries in the table joke 
- *     tags: [Jokes]
- *     responses:
- *       200:
- *         description: Integer representing the number of jokes
- *         content:
- *           application/json:
- *             schema:
- *               type: integer
- *               items:
- *                 $ref: '#/components/schemas/Joke'
- *       500:
- *         description: Server error
- */
-router.get('/countAll', controller.count);
 
 export default router;
