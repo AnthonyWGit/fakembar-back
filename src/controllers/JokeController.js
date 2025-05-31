@@ -83,5 +83,28 @@ export default {
         details: error.message
       });
     }
+  },
+
+    /**
+   * Get all and count how many entries are in table
+   * @async
+   */
+
+  count: async (req, res) => {
+    try {
+      const counting = await Joke.count();
+
+      if (!counting) {
+        return res.status(404).json({ error: "Aucune blague trouvée" });
+      }
+
+      res.json(counting);
+    } catch (error) {
+      console.error('ERREUR:', error);
+      res.status(500).json({ 
+        error: 'Erreur serveur',
+        details: error.message
+      });
+    }
   }
 };

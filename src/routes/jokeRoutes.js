@@ -109,4 +109,25 @@ router.post('/add', controller.addJoke);
  */
 router.get('/:id', controller.getJokeById);
 
+/**
+ * @swagger
+ * /jokes/all:
+ *   get:
+ *     summary: Count all the jokes
+ *     description: retrieve an integer representing the number of entries in the table joke 
+ *     tags: [Jokes]
+ *     responses:
+ *       200:
+ *         description: Integer representing the number of jokes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: integer
+ *               items:
+ *                 $ref: '#/components/schemas/Joke'
+ *       500:
+ *         description: Server error
+ */
+router.get('/countAll', controller.findAndCountAll);
+
 export default router;
