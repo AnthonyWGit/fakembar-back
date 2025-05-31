@@ -111,7 +111,7 @@ router.get('/:id', controller.getJokeById);
 
 /**
  * @swagger
- * /jokes/all:
+ * /jokes/countall:
  *   get:
  *     summary: Count all the jokes
  *     description: retrieve an integer representing the number of entries in the table joke 
@@ -128,6 +128,6 @@ router.get('/:id', controller.getJokeById);
  *       500:
  *         description: Server error
  */
-router.get('/countAll', controller.findAndCountAll);
+router.get('/countAll', controller.count);
 
 export default router;
