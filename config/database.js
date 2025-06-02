@@ -4,7 +4,7 @@ import { Sequelize } from 'sequelize';
 // Create Sequelize instance without immediate connection
 const sequelize = new Sequelize({
   dialect: process.env.DB_DIALECT || 'sqlite',
-  storage: './database.sqlite',
+  storage: './database/database.sqlite',
   logging: process.env.DB_LOGGING === 'true' ? console.log : false,
 });
 
