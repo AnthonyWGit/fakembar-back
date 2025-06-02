@@ -19,22 +19,22 @@ __3. Langages/Frameworks utilisés__
 - **Swagger** : Documentattion pour les routes de l'API
 - Moteur de templates **Pug**
 - Déploiment via **Render**
-- 
+
 __4. Structure du projet :__
 
-- ./config : contient les données de configuration pour Sequelize et la documentation Swagger
-- ./database : dossier de stockage de la DB
-- ./migrations : les migrations Serveur sont appliquées ici
-- ./public : contient les éléments statiques à servir au client : JS/Images/etc.
-- ./seeders : seeders pour Sequelize
-- ./src : contient le Model, les routes et les controllers
-- ./view : les vue sont placées ici
-- server-api.js : fichier qui est responsable de la connexion à l'API. C'est le fichier que le server Render démarrer.
+- **./config** : contient les données de configuration pour Sequelize et la documentation Swagger
+- **./database** : dossier de stockage de la DB
+- **./migrations** : les migrations Serveur sont appliquées ici
+- **./public** : contient les éléments statiques à servir au client : JS/Images/etc.
+- **./seeders** : seeders pour Sequelize
+- **./src** : contient le Model, les routes et les controllers
+- **./view** : les vue sont placées ici
+- **server-api.js** : fichier qui est responsable de la connexion à l'API. C'est le fichier que le server Render démarrer.
 
 __5. Test du projet en local__
 
-node server-api.js start 
-node server-frontend.js start 
+    node server-api.js start 
+    node server-frontend.js start 
 
 Si tout se passe bien, un log informe que la connection server est bien établie.
 
