@@ -3,12 +3,14 @@
     --yellow-bg : gold;
     --thickBlackBorder: solid 3px black;
     --maintextColor: salmon;
+    --h2color: white;
 }
 a
 {
     text-decoration: none;
     color:inherit;
 }
+
 *
 {
     box-sizing: border-box;
@@ -16,6 +18,7 @@ a
     padding: 0;
     font-size: 1.2rem;
 }
+
 .header
 {
     display: flex;
@@ -231,121 +234,110 @@ a
   background-color: #717171;
 }
 
+/* Slideshow container */
+.slideshow-container {
+    max-width: 800px;
+    position: relative;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.5);
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* The dots/bullets/indicators */
+.dot-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
 /* Fading animation */
 .fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
 }
 
 @keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+    from {opacity: .4} 
+    to {opacity: 1}
 }
 
-        /* Slideshow container */
-        .slideshow-container {
-            max-width: 800px;
-            position: relative;
-            margin: auto;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+/* Joke content styles */
+.joke-content {
+    padding: 40px 20px;
+    text-align: center;
+}
 
-        /* Next & previous buttons */
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-            background-color: rgba(0,0,0,0.5);
-        }
+.joke-question {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
 
-        /* Position the "next button" to the right */
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
+.joke-answer {
+    font-size: 1.2rem;
+    color: #d35400;
+    font-style: italic;
+}
 
-        /* On hover, add a black background */
-        .prev:hover, .next:hover {
-            background-color: rgba(0,0,0,0.8);
-        }
+/* ADD THIS RULE TO SHOW FIRST SLIDE BY DEFAULT */
+.mySlides:first-child {
+    display: block;
+}
 
-        /* The dots/bullets/indicators */
-        .dot-container {
-            text-align: center;
-            padding: 20px;
-        }
+/* ADD THIS TO PREVENT FLICKER */
+.slideshow-container {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.slideshow-container.initialized {
+    opacity: 1;
+}
 
-        .dot {
-            cursor: pointer;
-            height: 15px;
-            width: 15px;
-            margin: 0 5px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.6s ease;
-        }
-
-        .active, .dot:hover {
-            background-color: #717171;
-        }
-
-        /* Fading animation */
-        .fade {
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-
-        @keyframes fade {
-            from {opacity: .4} 
-            to {opacity: 1}
-        }
-
-        /* Joke content styles */
-        .joke-content {
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .joke-question {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .joke-answer {
-            font-size: 1.2rem;
-            color: #d35400;
-            font-style: italic;
-        }
-
-                /* ADD THIS RULE TO SHOW FIRST SLIDE BY DEFAULT */
-        .mySlides:first-child {
-            display: block;
-        }
-
-        /* ADD THIS TO PREVENT FLICKER */
-        .slideshow-container {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        .slideshow-container.initialized {
-            opacity: 1;
-        }
-
-/******************************ALL******************/
+/******************************ALL JOKES******************/
 
 .wrapper.jokeAll
 {
@@ -381,4 +373,45 @@ a
 {
     border-radius: 15px;
     padding: 10px;
+}
+
+/*********************RANDOM JOKES***********************/
+.img-wrapper:hover
+{
+    animation : rotation ease-in 3s infinite;
+}
+
+.wrapper.jokeRandom
+{
+    flex-direction: column;
+    justify-content: center;
+}
+@keyframes rotation{
+    0%{
+        transform: rotate(0deg);
+    }
+    33.33%{
+        transform: rotate(30deg);
+    }
+    66.66%
+    {
+        transform: rotate(-30deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+.fadeRandom
+{
+    animation: fadeIn ease-in-out 1s ;
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
