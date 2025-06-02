@@ -19,6 +19,7 @@ __3. Langages/Frameworks utilisés__
 - **Swagger** : Documentattion pour les routes de l'API
 - Moteur de templates **Pug**
 - Déploiment via **Render**
+- 
 __4. Structure du projet :__
 
 - ./config : contient les données de configuration pour Sequelize et la documentation Swagger
