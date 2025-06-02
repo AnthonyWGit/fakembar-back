@@ -20,7 +20,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
         },
-        // Ajoutez les autres blagues ici...
+        // Add others jokes here
       ], {});
     } catch (error) {
       console.error('Erreur détaillée :', error);
