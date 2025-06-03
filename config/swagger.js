@@ -12,9 +12,9 @@ const options = {
     info: {
       title: 'Carambar & Co API',
       version: '1.0.0',
-      description: 'API for managing Carambar jokes',
+      description: 'API for managing Fakembar jokes. Use the prod server for testing purposes.',
       contact: {
-        name: 'Carambar API Support',
+        name: 'Fakembar API Support',
         url: 'https://fakembar.com/support',
         email: 'api-support@fakembar.com'
       }
