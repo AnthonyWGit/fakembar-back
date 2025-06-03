@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   up: async (queryInterface) => {
     try {
       await queryInterface.bulkInsert('Jokes', [
