@@ -10,7 +10,7 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Carambar & Co API',
+      title: 'Fakembar & Co API',
       version: '1.0.0',
       description: 'API for managing Fakembar jokes. Use the prod server for testing purposes.',
       contact: {
