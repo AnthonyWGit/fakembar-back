@@ -29,7 +29,7 @@ __4. Structure du projet :__
 - **./seeders** : seeders pour Sequelize
 - **./src** : contient le Model, les routes et les controllers
 - **./view** : les vue sont placées ici
-- **server-api.js** : fichier qui est responsable de la connexion à l'API. C'est le fichier que le server Render démarrer.
+- **server-api.js** : fichier qui est responsable de la connexion à l'API. C'est le fichier que le server Render démarre.
 
 __5. Test du projet en local__
 
