@@ -1,5 +1,19 @@
   import Joke from '../models/Joke.js';
 
+  //helper func for escaping, should be placed in a utils folder
+  const basicHtmlEscape = (str) => {
+  if (typeof str !== 'string') return str;
+  return str.replace(/[&<>"']/g, 
+    char => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    })[char]
+  );
+};
+
   export default {
     /**
      * @swagger
@@ -54,6 +68,8 @@
           return res.status(400).json({ error: 'Text et answer sont requis' });
         }
 
+        text = basicHtmlEscape(text.trim());
+        answer = basicHtmlEscape(text.trim());
         const newJoke = await Joke.createJoke({ text, answer });
         res.status(201).json(newJoke);
       } catch (error) {
